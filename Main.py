@@ -8,7 +8,6 @@ import DetectChars
 import DetectPlates
 import PossiblePlate
 
-# module level variables ##########################################################################
 SCALAR_BLACK = (0.0, 0.0, 0.0)
 SCALAR_WHITE = (255.0, 255.0, 255.0)
 SCALAR_YELLOW = (0.0, 255.0, 255.0)
@@ -19,64 +18,44 @@ showSteps = False
 
 ###################################################################################################
 def main():
+    # imageList = ["car1.png","car2.png","car3.png","car4.png","car5.png","car6.png","car7.png","car8.png","car9.png","car10.png","car11.png","car12.png","car13.png","car14.png"]
+    # imageList = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg","10.jpg"]
+    # imageList = imageList + ["11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"]
+    imageList = ["25.jpg"]
+    # masterListOfPossitiveDetectedPlateNumber = []
+    
+    for image in imageList:
 
-    blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()         # attempt KNN training
+        imgOriginalScene  = cv2.imread("LicPlateImages/G/" + image)
 
-    if blnKNNTrainingSuccessful == False:                               # if KNN training was not successful
-        print("\nerror: KNN traning was not successful\n")  # show error message
-        return                                                          # and exit program
-    # end if
+        if imgOriginalScene is None:
+            print("error: image not read from file")
+            continue 
 
-    imgOriginalScene  = cv2.imread("LicPlateImages/1.png")               # open image
+        listOfPossitiveDetectedPlateNumber = extractPlateNumber(image, imgOriginalScene)
+        # for plateNumber in listOfPossitiveDetectedPlateNumber:
+        #     masterListOfPossitiveDetectedPlateNumber.append(plateNumber)
 
-    if imgOriginalScene is None:                            # if image was not read successfully
-        print("\nerror: image not read from file \n\n")  # print error message to std out
-        os.system("pause")                                  # pause so user can see error message
-        return                                              # and exit program
-    # end if
+    # for platenumber in masterListOfPossitiveDetectedPlateNumber:
+    #     print(platenumber.strChars)
 
+    return
+
+def extractPlateNumber(imageName, imgOriginalScene):
+    
     listOfPossiblePlates = DetectPlates.detectPlatesInScene(imgOriginalScene)           # detect plates
 
     listOfPossiblePlates = DetectChars.detectCharsInPlates(listOfPossiblePlates)        # detect chars in plates
 
-    cv2.imshow("imgOriginalScene", imgOriginalScene)            # show scene image
+    listOfPossitiveDetectedPlateNumbers = []
+    # plateCount = 0
+    for possiblePlate in listOfPossiblePlates:
+        # plateCount = plateCount + 1
+        if len(possiblePlate.strChars) > 0:
+            print(possiblePlate.strChars)
+            listOfPossitiveDetectedPlateNumbers.append(possiblePlate)
 
-    if len(listOfPossiblePlates) == 0:                          # if no plates were found
-        print("\nno license plates were detected\n")  # inform user no plates were found
-    else:                                                       # else
-                # if we get in here list of possible plates has at leat one plate
-
-                # sort the list of possible plates in DESCENDING order (most number of chars to least number of chars)
-        listOfPossiblePlates.sort(key = lambda possiblePlate: len(possiblePlate.strChars), reverse = True)
-
-                # suppose the plate with the most recognized chars (the first plate in sorted by string length descending order) is the actual plate
-        licPlate = listOfPossiblePlates[0]
-
-        cv2.imshow("imgPlate", licPlate.imgPlate)           # show crop of plate and threshold of plate
-        cv2.imshow("imgThresh", licPlate.imgThresh)
-
-        if len(licPlate.strChars) == 0:                     # if no chars were found in the plate
-            print("\nno characters were detected\n\n")  # show message
-            return                                          # and exit program
-        # end if
-
-        drawRedRectangleAroundPlate(imgOriginalScene, licPlate)             # draw red rectangle around plate
-
-        print("\nlicense plate read from image = " + licPlate.strChars + "\n")  # write license plate text to std out
-        print("----------------------------------------")
-
-        writeLicensePlateCharsOnImage(imgOriginalScene, licPlate)           # write license plate text on the image
-
-        cv2.imshow("imgOriginalScene", imgOriginalScene)                # re-show scene image
-
-        cv2.imwrite("imgOriginalScene.png", imgOriginalScene)           # write image out to file
-
-    # end if else
-
-    cv2.waitKey(0)					# hold windows open until user presses a key
-
-    return
-# end main
+    return listOfPossitiveDetectedPlateNumbers
 
 ###################################################################################################
 def drawRedRectangleAroundPlate(imgOriginalScene, licPlate):

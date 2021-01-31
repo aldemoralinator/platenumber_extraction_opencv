@@ -1,0 +1,69 @@
+Test Results:
+
+
+folder: G
+file type: jpg
+width in pixel: 1000px
+range size: 259kb to 368kb
+total execution time: 15seconds
+average detection: 1.5 detection/second
+
+id  size    platenumber output      passed  numberOfGuessedPlates   notes
+1   294kb   NDV2275     SNDV22755   YES     1			
+2   368kb   NCH8591     ANCH85915   YES     12
+3   259kb   A6F086      16FOS       NO      2                       red plate number, different format
+4   289kb   SGY514      MA          NO      2                       grey plate number
+5   311kb   UJY883      UJY883      YES     4
+6   312kb   SAA7998     1SAA79988   YES     1
+7   294kb   AKA8408     AAKA84089   YES     4
+8   295kb   AAN4628     1AAN46265   NO      9                       side angle
+9   338kb   ZBA391      7BA331      NO      14                      side angle
+10  318kb   NAB6206     SNAB6206    YES     9	
+
+
+folder: E
+file type: jpg
+width in pixel: 1500px
+range size: 526kb to 735kb
+total execution time: 45 seconds
+average detection: 4.5 detection/second
+
+id  size    platenumber output      passed  numberOfGuessedPlates   notes
+1   601kb   NDV2275     NDV22755    YES     3			
+2   735kb   NCH8591     ANCH85915   YES     35
+3   536kb   A6F086      GA6ENRAB    NO      4                       red plate number, different format
+4   582kb   SGY514      ENT         NO      2                       grey plate number
+5   639kb   UJY883      LUJY883     YES     6
+6   624kb   SAA7998     SAA79985    YES     0
+7   570kb   AKA8408     AKA84085    YES     8
+8   603kb   AAN4628     AAN46265    NO      12                      side angle
+9   690kb   ZBA391      7BA3911     NO      16                      side angle
+10  642kb   NAB6206     BNAB6206    YES     15	
+
+
+folder: F
+file type: jpg
+width in pixel: 2000px
+range size: 897kb to 1.2mb
+total execution time: 2minutes 25seconds
+average detection: 14.5
+
+id  size    platenumber output      passed  numberOfGuessedPlates   notes
+1   601kb   NDV2275     NDV22755    YES     4			
+2   735kb   NCH8591     BNCH85915   YES     56
+3   536kb   A6F086      10FUOO      NO      4                       red plate number, different format
+4   582kb   SGY514      LSGY514     NO      7                       grey plate number
+5   639kb   UJY883      LUJY883     YES     18
+6   624kb   SAA7998     1SAA79989   YES     19
+7   570kb   AKA8408     AKA84085    YES     25
+8   603kb   AAN4628     1AAN4628    NO      19                      side angle
+9   690kb   ZBA391      L7BK391     NO      22                      side angle
+10  642kb   NAB6206     SNAB6206    YES     25	
+
+
+
+
+
+
+
+
