@@ -21,7 +21,7 @@ def main():
     # imageList = ["car1.png","car2.png","car3.png","car4.png","car5.png","car6.png","car7.png","car8.png","car9.png","car10.png","car11.png","car12.png","car13.png","car14.png"]
     # imageList = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg","10.jpg"]
     # imageList = imageList + ["11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"]
-    imageList = ["25.jpg"]
+    imageList = ["26.jpg"]
     # masterListOfPossitiveDetectedPlateNumber = []
     
     for image in imageList:
