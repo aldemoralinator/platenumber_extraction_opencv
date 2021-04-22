@@ -11,7 +11,7 @@ import Preprocess
 import PossibleChar
 
 import imutils
-import easyocr
+#import easyocr
 
 import pytesseract
 
@@ -40,12 +40,14 @@ MAX_CHANGE_IN_HEIGHT = 0.2
 MAX_ANGLE_BETWEEN_CHARS = 12.0
 
 # other constants
-MIN_NUMBER_OF_MATCHING_CHARS = 3
+MIN_NUMBER_OF_MATCHING_CHARS = 6
 
 RESIZED_CHAR_IMAGE_WIDTH = 20
 RESIZED_CHAR_IMAGE_HEIGHT = 30
 
 MIN_CONTOUR_AREA = 100
+
+listOfRegisteredPlates = []
 
 def detectCharsInPlates(listOfPossiblePlates):
     intPlateCounter = 0
@@ -72,11 +74,11 @@ def detectCharsInPlates(listOfPossiblePlates):
         result = pytesseract.image_to_string(possiblePlate.imgPlate, lang='eng', config='--psm 10 --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
 
         result = result.replace(" ", "").rstrip()
-        # print(result)
-        # data = ["NDV2275","NCH8591","A6F086","SGY514","UJY883","SAA7998","AKA8408","AAN4628","ZBA391","NAB6206"]
-        # data = data + ["DAN5649","DCP4250","VDV402","XEW161","DAN3044","DAG7707","NCV5062", "DAG6675", "NAO5547", "DCP5626"]
-        # data = ["NAG4598", "NDI9422", "NCV1423"]
-        data = ["WEH979", "NCJ5689", "NCW5742", "AAY6891", "NAS9380"]
+
+        print(result)
+        
+        data = listOfRegisteredPlates
+ 
         for datum in data:
             if datum in result:
                 # print(datum)

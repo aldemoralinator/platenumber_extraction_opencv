@@ -43,7 +43,7 @@ def detectPlatesInScene(imgOriginalScene):
         if possiblePlate.imgPlate is not None:                          # if plate was found
             listOfPossiblePlates.append(possiblePlate)                  # add to list of possible plates
 
-    # print("\n" + str(len(listOfPossiblePlates)) + " possible plates found")  # 13 with MCLRNF1 image
+    print("___ initialize... _______________________________ \n")  # 13 with MCLRNF1 image
 
     return listOfPossiblePlates
 
